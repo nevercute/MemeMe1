@@ -110,8 +110,8 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     fileprivate func generateImage() -> UIImage {
-        topToolbar.isHidden = true
-        imageToolbar.isHidden = true
+        
+        hideToolbars(true)
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -119,8 +119,7 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        topToolbar.isHidden = false
-        imageToolbar.isHidden = false
+        hideToolbars(false)
         
         return memedImage
     }
@@ -175,6 +174,11 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
             bottomText: self.bottomTextField.text!,
             image: self.imagePickerView.image!,
             memedImage: memeImage)
+    }
+    
+    fileprivate func hideToolbars(_ hide: Bool) {
+        topToolbar.isHidden = hide
+        imageToolbar.isHidden = hide
     }
     
     
